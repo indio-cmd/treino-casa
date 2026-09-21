@@ -1,10 +1,10 @@
 import ServiceIndex from '../service/index.js'
 
 class ControllerIndex {
-Buscar(req, res) {
+async Buscar(req, res) {
     try {
 
-        const hospital5 = ServiceIndex.Buscar()
+        const hospital5 = await ServiceIndex.Buscar()
 
         res.status(201).send({mensagem: hospital5})
     } catch (error) {
@@ -12,11 +12,11 @@ Buscar(req, res) {
     }
 }
 
-BuscarUm(req, res)  {
+async BuscarUm(req, res)  {
     try {
         const id = Number(req.params.id)
 
-const hospital10 = ServiceIndex.Buscarum(id)
+const hospital10 = await ServiceIndex.Buscarum(id)
 
         res.status(201).send({mensagem: hospital10})
 
@@ -25,11 +25,11 @@ const hospital10 = ServiceIndex.Buscarum(id)
     }
 }
 
-Criar(req, res)  {
+async Criar(req, res)  {
     try {
-        const {id, nome, medico, data, valor, hospital, pago} = req.body
+        const {nome, medico, data, valor, hospital, pago} = req.body
 
-ServiceIndex.Criar(id, nome, medico, data, valor, hospital, pago)
+await ServiceIndex.Criar(nome, medico, data, valor, hospital, pago)
 
 res.status(201).send({mensagem: "Consulta marcada com sucesso"})
 
@@ -38,12 +38,12 @@ res.status(201).send({mensagem: "Consulta marcada com sucesso"})
     }
 }
 
-Alterar(req, res)  {
+async Alterar(req, res)  {
     try {
         const id = Number(req.params.id) 
         const {nome, medico, data, valor, hospital, pago} = req.body
 
-ServiceIndex.Alterar(id, nome, medico, data, valor, hospital, pago)
+await ServiceIndex.Alterar(id, nome, medico, data, valor, hospital, pago)
 
 res.status(201).send({mensagem: "Consulta alterada com sucesso!"})
 
@@ -52,11 +52,11 @@ res.status(201).send({mensagem: "Consulta alterada com sucesso!"})
     }
 }
 
-Deletar(req, res)  {
+async Deletar(req, res)  {
     try {
         const id = Number(req.params.id)
 
-        ServiceIndex.Deletar(id)
+     await   ServiceIndex.Deletar(id)
 
 res.status(201).send({mensagem: "Consulta apagada com sucesso"})
 
@@ -65,11 +65,11 @@ res.status(201).send({mensagem: "Consulta apagada com sucesso"})
     }
 }
 
-Pagamento(req, res) {
+async  Pagamento(req, res) {
     try {
         const id = Number(req.params.id)
 
-        ServiceIndex.Pagamento(id)
+     await  ServiceIndex.Pagamento(id)
 
         res.status(201).send({mensagem: "Pago com sucesso"})
 
